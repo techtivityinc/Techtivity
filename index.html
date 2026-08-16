@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Techtivity — A student collective that builds</title>
+<meta name="description" content="Techtivity is a 100+ member student collective shipping open-source campus tools, workshops, and the occasional 2am fix. Est. 2021.">
+
+<meta property="og:title" content="Techtivity — A student collective that builds">
+<meta property="og:description" content="Campus tools, open-source libraries, and the occasional 2am fix. Est. 2021, 100+ members.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050607'/%3E%3Cpath d='M9 16h14M16 9v14' stroke='%237d9df2' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Grain / atmosphere overlays -->
+<div class="grain" aria-hidden="true"></div>
+<div class="glow-field" aria-hidden="true"></div>
+<div class="noise-vignette" aria-hidden="true"></div>
+
+<!-- Custom cursor (desktop only, disabled via JS on touch) -->
+<div class="cursor" aria-hidden="true">
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"><span class="cursor-ring__label"></span></div>
+</div>
+
+<!-- Scroll progress -->
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scrollProgress"></div></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="nav" id="siteNav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__logo magnetic" data-magnetic aria-label="Techtivity home">
+      <span class="nav__logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+          <rect x="1" y="1" width="30" height="30" rx="6" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M9 16h14M16 9v14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="nav__logo-word">TECHTIVITY</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about" class="nav__link" data-scramble><span class="nav__link-index mono">01</span>About</a>
+      <a href="#creators" class="nav__link" data-scramble><span class="nav__link-index mono">02</span>Creators</a>
+      <a href="#projects" class="nav__link" data-scramble><span class="nav__link-index mono">03</span>Projects</a>
+      <a href="#contact" class="nav__link" data-scramble><span class="nav__link-index mono">04</span>Contact</a>
+    </nav>
+
+    <div class="nav__meta mono" aria-hidden="true">
+      <span id="localClock">--:--:--</span>
+      <span class="nav__meta-divider">/</span>
+      <span>CAMPUS TIME</span>
+    </div>
+
+    <button class="nav__menu-btn" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+      <span class="nav__menu-line"></span>
+      <span class="nav__menu-line"></span>
+    </button>
+  </div>
+</header>
+
+<!-- Fullscreen mobile nav -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <nav aria-label="Mobile primary">
+    <a href="#about" class="mobile-nav__link"><span>01</span>About</a>
+    <a href="#creators" class="mobile-nav__link"><span>02</span>Creators</a>
+    <a href="#projects" class="mobile-nav__link"><span>03</span>Projects</a>
+    <a href="#contact" class="mobile-nav__link"><span>04</span>Contact</a>
+  </nav>
+  <div class="mobile-nav__footer">
+    <span class="mono">GITHUB — X — DISCORD</span>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero__gradient" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <p class="hero__eyebrow reveal-up mono" id="heroEyebrow" data-type="STUDENT-BUILT · EST. 2021 · 100+ MEMBERS">&nbsp;</p>
+
+      <h1 class="hero__wordmark" aria-label="Techtivity">
+        <span class="reveal-word" data-letters>TECH</span><span class="reveal-word hero__wordmark--accent" data-letters>TIVITY</span>
+      </h1>
+
+      <p class="hero__tagline reveal-up">
+        A student collective that builds real software instead of writing about it — campus tools, open-source libraries, and the occasional 2am fix.
+      </p>
+
+      <div class="hero__actions reveal-up">
+        <a href="#projects" class="btn btn--primary magnetic" data-magnetic>
+          <span>See what we've shipped</span>
+        </a>
+        <a href="#about" class="btn btn--ghost magnetic" data-magnetic>Explore</a>
+      </div>
+
+      <div class="hero__stats reveal-up">
+        <div class="hero__stat">
+          <span class="hero__stat-num mono" data-count-to="118">0</span>
+          <span class="hero__stat-label mono">MEMBERS</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num mono" data-count-to="27">0</span>
+          <span class="hero__stat-label mono">PROJECTS SHIPPED</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num mono" data-count-to="4">0</span>
+          <span class="hero__stat-label mono">YEARS RUNNING</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="hero__scroll" id="scrollIndicator" aria-label="Scroll to about section">
+      <span class="hero__scroll-line"></span>
+      <span class="mono">SCROLL</span>
+    </button>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>REACT</span><span class="marquee__dot">·</span>
+      <span>NODE.JS</span><span class="marquee__dot">·</span>
+      <span>RUST</span><span class="marquee__dot">·</span>
+      <span>WEBGL</span><span class="marquee__dot">·</span>
+      <span>POSTGRESQL</span><span class="marquee__dot">·</span>
+      <span>TYPESCRIPT</span><span class="marquee__dot">·</span>
+      <span>NEXT.JS</span><span class="marquee__dot">·</span>
+      <span>SWIFT</span><span class="marquee__dot">·</span>
+      <span>PYTHON</span><span class="marquee__dot">·</span>
+      <span>WASM</span><span class="marquee__dot">·</span>
+    </div>
+    <div class="marquee__track" aria-hidden="true">
+      <span>REACT</span><span class="marquee__dot">·</span>
+      <span>NODE.JS</span><span class="marquee__dot">·</span>
+      <span>RUST</span><span class="marquee__dot">·</span>
+      <span>WEBGL</span><span class="marquee__dot">·</span>
+      <span>POSTGRESQL</span><span class="marquee__dot">·</span>
+      <span>TYPESCRIPT</span><span class="marquee__dot">·</span>
+      <span>NEXT.JS</span><span class="marquee__dot">·</span>
+      <span>SWIFT</span><span class="marquee__dot">·</span>
+      <span>PYTHON</span><span class="marquee__dot">·</span>
+      <span>WASM</span><span class="marquee__dot">·</span>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section about" id="about">
+    <div class="section__head">
+      <span class="section__index mono">01</span>
+      <h2 class="section__title reveal-up">Four people, one broken job board, a weekend.</h2>
+    </div>
+
+    <div class="about__grid">
+      <div class="about__visual reveal-up" aria-hidden="true">
+        <div class="about__visual-inner">
+          <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none">
+            <circle class="draw-circle" cx="100" cy="100" r="70" stroke="currentColor" stroke-width="0.6" opacity="0.5"/>
+            <circle class="draw-circle" cx="100" cy="100" r="45" stroke="currentColor" stroke-width="0.6" opacity="0.35"/>
+            <circle class="draw-circle" cx="100" cy="100" r="20" stroke="currentColor" stroke-width="0.6" opacity="0.8"/>
+            <line class="draw-line" x1="100" y1="10" x2="100" y2="190" stroke="currentColor" stroke-width="0.4" opacity="0.25"/>
+            <line class="draw-line" x1="10" y1="100" x2="190" y2="100" stroke="currentColor" stroke-width="0.4" opacity="0.25"/>
+          </svg>
+        </div>
+        <span class="mono about__visual-tag">[ BUILD NIGHT, THURS 7PM ]</span>
+      </div>
+
+      <div class="about__copy">
+        <p class="about__text reveal-up">
+          Techtivity started in 2021 when four sophomores got tired of complaining about the campus job board and rebuilt it in a weekend. It's since grown into a hundred-plus student engineers, designers, and researchers who'd rather ship the thing than write the essay about it. We meet Thursdays, build in public, and open-source everything that isn't embarrassing yet.
+        </p>
+
+        <div class="value-cards reveal-up">
+          <div class="value-card">
+            <span class="mono value-card__index">[ 01 ]</span>
+            <h3 class="value-card__title">Build in the open</h3>
+            <p class="value-card__text">Every project starts as a public repo, issue tracker included, from commit one.</p>
+          </div>
+          <div class="value-card">
+            <span class="mono value-card__index">[ 02 ]</span>
+            <h3 class="value-card__title">Ship before it's ready</h3>
+            <p class="value-card__text">We'd rather learn from a rough version in someone's hands than polish something nobody's used.</p>
+          </div>
+          <div class="value-card">
+            <span class="mono value-card__index">[ 03 ]</span>
+            <h3 class="value-card__title">Teach what you just learned</h3>
+            <p class="value-card__text">Every member runs at least one workshop a year, on whatever they figured out last month.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline reveal-up" role="list" aria-label="Techtivity timeline" id="timeline">
+      <div class="timeline__track" aria-hidden="true"><div class="timeline__track-fill" id="timelineFill"></div></div>
+      <div class="timeline__item" role="listitem">
+        <span class="mono timeline__year">2021</span>
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <span class="timeline__label">Founded over a hackathon weekend by four CS sophomores.</span>
+      </div>
+      <div class="timeline__item" role="listitem">
+        <span class="mono timeline__year">2022</span>
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <span class="timeline__label">First open build night — 40 people, one borrowed classroom.</span>
+      </div>
+      <div class="timeline__item" role="listitem">
+        <span class="mono timeline__year">2023</span>
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <span class="timeline__label">Shipped Pulse to 2,000+ students across two campuses.</span>
+      </div>
+      <div class="timeline__item" role="listitem">
+        <span class="mono timeline__year">2024</span>
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <span class="timeline__label">Ran our first Summit — 12 workshops, one very long day.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CREATORS ============ -->
+  <section class="section creators" id="creators">
+    <div class="section__head">
+      <span class="section__index mono">02</span>
+      <h2 class="section__title reveal-up">The people at the whiteboard</h2>
+      <p class="section__sub reveal-up mono">[ THREE OF ~118 — THE REST ARE BUILDING SOMETHING RIGHT NOW ]</p>
+    </div>
+
+    <div class="creator-grid" id="creatorGrid">
+
+      <article class="creator-card reveal-up" data-tilt>
+        <div class="creator-card__media" aria-hidden="true">
+          <div class="creator-card__avatar creator-card__avatar--01"><span class="mono">PR</span></div>
+        </div>
+        <div class="creator-card__body">
+          <h3 class="creator-card__name">Priya Raman</h3>
+          <p class="creator-card__role mono">LEAD ENGINEER</p>
+          <p class="creator-card__desc">Rewriting our infra since sophomore year, and still finds time to review every pull request before midnight.</p>
+          <div class="creator-card__links">
+            <a href="#" class="text-link">Portfolio</a>
+            <a href="#projects" class="text-link">Projects</a>
+          </div>
+          <div class="creator-card__socials" aria-label="Social links">
+            <a href="#" class="icon-link" aria-label="GitHub">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.64 0 8.13c0 3.6 2.29 6.65 5.47 7.73.4.08.55-.18.55-.39 0-.19-.01-.82-.01-1.49-2.01.38-2.53-.5-2.69-.96-.09-.23-.48-.96-.82-1.15-.28-.15-.68-.53-.01-.54.63-.01 1.08.59 1.23.83.72 1.23 1.87.88 2.33.67.07-.53.28-.88.51-1.08-1.78-.2-3.64-.9-3.64-4 0-.88.31-1.61.82-2.18-.08-.2-.36-1.03.08-2.15 0 0 .67-.22 2.2.83a7.4 7.4 0 0 1 4 0c1.53-1.06 2.2-.83 2.2-.83.44 1.12.16 1.95.08 2.15.51.57.82 1.29.82 2.18 0 3.11-1.87 3.8-3.65 4 .29.25.54.75.54 1.51 0 1.09-.01 1.97-.01 2.24 0 .21.15.48.55.39A8.14 8.14 0 0 0 16 8.13C16 3.64 12.42 0 8 0Z"/></svg>
+            </a>
+            <a href="#" class="icon-link" aria-label="X (Twitter)">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M9.53 6.82 15.34 0h-1.38l-5.04 5.92L4.9 0H0l6.1 8.89L0 16h1.38l5.32-6.26L11.1 16H16L9.53 6.82Zm-1.88 2.2-.62-.88L2.13 1.04h2.12l3.96 5.66.62.88 5.15 7.36H11.8L7.65 9.02Z"/></svg>
+            </a>
+            <a href="#" class="icon-link" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M14.82 0H1.18C.53 0 0 .53 0 1.19v13.63C0 15.47.53 16 1.18 16h13.64c.65 0 1.18-.53 1.18-1.18V1.18C16 .53 15.47 0 14.82 0ZM4.74 13.63H2.37V6h2.37v7.63ZM3.56 4.98a1.38 1.38 0 1 1 0-2.75 1.38 1.38 0 0 1 0 2.75Zm10.07 8.65h-2.37V9.9c0-.87-.02-1.99-1.21-1.99-1.22 0-1.4.95-1.4 1.93v3.79H6.28V6h2.28v1.04h.03c.32-.6 1.09-1.22 2.24-1.22 2.4 0 2.84 1.58 2.84 3.63v4.18Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="creator-card reveal-up" data-tilt>
+        <div class="creator-card__media" aria-hidden="true">
+          <div class="creator-card__avatar creator-card__avatar--02"><span class="mono">JF</span></div>
+        </div>
+        <div class="creator-card__body">
+          <h3 class="creator-card__name">Jonah Ferris</h3>
+          <p class="creator-card__role mono">DESIGN LEAD</p>
+          <p class="creator-card__desc">Cares about how a hover feels as much as how a database is indexed. Redraws the same button eleven times.</p>
+          <div class="creator-card__links">
+            <a href="#" class="text-link">Portfolio</a>
+            <a href="#projects" class="text-link">Projects</a>
+          </div>
+          <div class="creator-card__socials" aria-label="Social links">
+            <a href="#" class="icon-link" aria-label="GitHub">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.64 0 8.13c0 3.6 2.29 6.65 5.47 7.73.4.08.55-.18.55-.39 0-.19-.01-.82-.01-1.49-2.01.38-2.53-.5-2.69-.96-.09-.23-.48-.96-.82-1.15-.28-.15-.68-.53-.01-.54.63-.01 1.08.59 1.23.83.72 1.23 1.87.88 2.33.67.07-.53.28-.88.51-1.08-1.78-.2-3.64-.9-3.64-4 0-.88.31-1.61.82-2.18-.08-.2-.36-1.03.08-2.15 0 0 .67-.22 2.2.83a7.4 7.4 0 0 1 4 0c1.53-1.06 2.2-.83 2.2-.83.44 1.12.16 1.95.08 2.15.51.57.82 1.29.82 2.18 0 3.11-1.87 3.8-3.65 4 .29.25.54.75.54 1.51 0 1.09-.01 1.97-.01 2.24 0 .21.15.48.55.39A8.14 8.14 0 0 0 16 8.13C16 3.64 12.42 0 8 0Z"/></svg>
+            </a>
+            <a href="#" class="icon-link" aria-label="X (Twitter)">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M9.53 6.82 15.34 0h-1.38l-5.04 5.92L4.9 0H0l6.1 8.89L0 16h1.38l5.32-6.26L11.1 16H16L9.53 6.82Zm-1.88 2.2-.62-.88L2.13 1.04h2.12l3.96 5.66.62.88 5.15 7.36H11.8L7.65 9.02Z"/></svg>
+            </a>
+            <a href="#" class="icon-link" aria-label="Dribbble">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1"><circle cx="8" cy="8" r="7"/><path d="M2 6.2c3.5 1.1 8.4 1 11.6-.5M2.4 11c4-2.7 8.6-3 11.2-1.9M6.3 1.3c2.3 3 3.6 7.6 3.1 13.2"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="creator-card reveal-up" data-tilt>
+        <div class="creator-card__media" aria-hidden="true">
+          <div class="creator-card__avatar creator-card__avatar--03"><span class="mono">MO</span></div>
+        </div>
+        <div class="creator-card__body">
+          <h3 class="creator-card__name">Maya Okonkwo</h3>
+          <p class="creator-card__role mono">COMMUNITY LEAD</p>
+          <p class="creator-card__desc">Runs Thursday build nights and remembers everyone's first commit — and usually their second one, too.</p>
+          <div class="creator-card__links">
+            <a href="#" class="text-link">Portfolio</a>
+            <a href="#projects" class="text-link">Projects</a>
+          </div>
+          <div class="creator-card__socials" aria-label="Social links">
+            <a href="#" class="icon-link" aria-label="GitHub">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.64 0 8.13c0 3.6 2.29 6.65 5.47 7.73.4.08.55-.18.55-.39 0-.19-.01-.82-.01-1.49-2.01.38-2.53-.5-2.69-.96-.09-.23-.48-.96-.82-1.15-.28-.15-.68-.53-.01-.54.63-.01 1.08.59 1.23.83.72 1.23 1.87.88 2.33.67.07-.53.28-.88.51-1.08-1.78-.2-3.64-.9-3.64-4 0-.88.31-1.61.82-2.18-.08-.2-.36-1.03.08-2.15 0 0 .67-.22 2.2.83a7.4 7.4 0 0 1 4 0c1.53-1.06 2.2-.83 2.2-.83.44 1.12.16 1.95.08 2.15.51.57.82 1.29.82 2.18 0 3.11-1.87 3.8-3.65 4 .29.25.54.75.54 1.51 0 1.09-.01 1.97-.01 2.24 0 .21.15.48.55.39A8.14 8.14 0 0 0 16 8.13C16 3.64 12.42 0 8 0Z"/></svg>
+            </a>
+            <a href="#" class="icon-link" aria-label="Discord">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M13.5 2.9A13.2 13.2 0 0 0 10.3 2c-.15.27-.31.62-.43.9a12.3 12.3 0 0 0-3.74 0c-.12-.28-.29-.63-.44-.9-1.03.18-2.02.5-2.94.88C1.1 6.2.55 9.4.82 12.55c1.3.96 2.56 1.54 3.8 1.92.31-.42.58-.87.81-1.34-.45-.17-.87-.38-1.28-.62.11-.08.21-.16.31-.25 2.47 1.15 5.14 1.15 7.58 0 .1.09.2.17.31.25-.41.24-.84.45-1.29.62.23.47.5.92.81 1.34 1.24-.38 2.51-.96 3.8-1.92.32-3.65-.58-6.82-2.4-9.65ZM5.68 10.6c-.74 0-1.35-.68-1.35-1.51 0-.83.6-1.51 1.35-1.51.76 0 1.36.69 1.35 1.51 0 .83-.6 1.51-1.35 1.51Zm4.65 0c-.74 0-1.35-.68-1.35-1.51 0-.83.6-1.51 1.35-1.51.76 0 1.36.69 1.35 1.51 0 .83-.59 1.51-1.35 1.51Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="section projects" id="projects">
+    <div class="section__head">
+      <span class="section__index mono">03</span>
+      <h2 class="section__title reveal-up">Things we've shipped</h2>
+      <p class="section__sub reveal-up mono">[ ALL OPEN SOURCE UNLESS NOTED OTHERWISE ]</p>
+    </div>
+
+    <div class="project-grid" id="projectGrid">
+
+      <article class="project-card reveal-up">
+        <div class="project-card__media" aria-hidden="true">
+          <div class="project-card__media-inner">
+            <svg viewBox="0 0 64 64" width="72" height="72" fill="none"><circle cx="32" cy="32" r="3" fill="currentColor"/><circle cx="14" cy="20" r="2" fill="currentColor" opacity="0.6"/><circle cx="50" cy="18" r="2" fill="currentColor" opacity="0.6"/><circle cx="46" cy="48" r="2" fill="currentColor" opacity="0.6"/><circle cx="16" cy="46" r="2" fill="currentColor" opacity="0.6"/><path d="M32 32 14 20M32 32 50 18M32 32 46 48M32 32 16 46" stroke="currentColor" stroke-width="0.5" opacity="0.4"/></svg>
+          </div>
+          <span class="project-card__status mono">ACTIVE</span>
+        </div>
+        <div class="project-card__body">
+          <div class="project-card__meta">
+            <span class="mono project-card__category">MOBILE · CAMPUS</span>
+          </div>
+          <h3 class="project-card__title">Pulse</h3>
+          <p class="project-card__desc">A live map of every event happening on campus right now, built because we were tired of finding out about things the day after.</p>
+          <div class="project-card__tags">
+            <span class="tag mono">React Native</span>
+            <span class="tag mono">Node.js</span>
+            <span class="tag mono">PostgreSQL</span>
+          </div>
+          <div class="project-card__links">
+            <a href="#" class="text-link">Visit</a>
+            <a href="#" class="text-link">Case study</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal-up">
+        <div class="project-card__media" aria-hidden="true">
+          <div class="project-card__media-inner">
+            <svg viewBox="0 0 64 64" width="72" height="72" fill="none"><rect x="12" y="10" width="40" height="44" rx="2" stroke="currentColor" stroke-width="0.8" opacity="0.5"/><path d="M18 22h28M18 30h28M18 38h18" stroke="currentColor" stroke-width="0.8" opacity="0.6"/></svg>
+          </div>
+          <span class="project-card__status mono">ACTIVE</span>
+        </div>
+        <div class="project-card__body">
+          <div class="project-card__meta"><span class="mono project-card__category">WEB · RESEARCH TOOLS</span></div>
+          <h3 class="project-card__title">Fieldnote</h3>
+          <p class="project-card__desc">A shared notebook for lab groups that syncs in real time and keeps a full history of every edit, down to the keystroke.</p>
+          <div class="project-card__tags">
+            <span class="tag mono">TypeScript</span>
+            <span class="tag mono">WebSockets</span>
+            <span class="tag mono">CRDT</span>
+          </div>
+          <div class="project-card__links">
+            <a href="#" class="text-link">Visit</a>
+            <a href="#" class="text-link">Case study</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal-up">
+        <div class="project-card__media" aria-hidden="true">
+          <div class="project-card__media-inner">
+            <svg viewBox="0 0 64 64" width="72" height="72" fill="none"><path d="M8 32c6-14 42-14 48 0-6 14-42 14-48 0Z" stroke="currentColor" stroke-width="0.8" opacity="0.55"/><path d="M8 32c10 8 38 8 48 0M8 32c10-8 38-8 48 0" stroke="currentColor" stroke-width="0.5" opacity="0.35"/></svg>
+          </div>
+          <span class="project-card__status mono">ARCHIVED</span>
+        </div>
+        <div class="project-card__body">
+          <div class="project-card__meta"><span class="mono project-card__category">CREATIVE TOOLS</span></div>
+          <h3 class="project-card__title">Grainline</h3>
+          <p class="project-card__desc">A pattern generator for textile design students, running entirely in the browser with no plugins or install.</p>
+          <div class="project-card__tags">
+            <span class="tag mono">WebGL</span>
+            <span class="tag mono">Rust</span>
+            <span class="tag mono">WASM</span>
+          </div>
+          <div class="project-card__links">
+            <a href="#" class="text-link">Visit</a>
+            <a href="#" class="text-link">Case study</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal-up">
+        <div class="project-card__media" aria-hidden="true">
+          <div class="project-card__media-inner">
+            <svg viewBox="0 0 64 64" width="72" height="72" fill="none"><rect x="14" y="14" width="36" height="36" rx="1" stroke="currentColor" stroke-width="0.8" opacity="0.5"/><path d="M22 32h20M32 22v20" stroke="currentColor" stroke-width="0.8" opacity="0.6"/></svg>
+          </div>
+          <span class="project-card__status mono">ACTIVE</span>
+        </div>
+        <div class="project-card__body">
+          <div class="project-card__meta"><span class="mono project-card__category">OPEN SOURCE</span></div>
+          <h3 class="project-card__title">Ledger</h3>
+          <p class="project-card__desc">The expense splitter we wished existed before our last trip — no accounts, no ads, just the math done right.</p>
+          <div class="project-card__tags">
+            <span class="tag mono">Next.js</span>
+            <span class="tag mono">Prisma</span>
+            <span class="tag mono">SQLite</span>
+          </div>
+          <div class="project-card__links">
+            <a href="#" class="text-link">Visit</a>
+            <a href="#" class="text-link">Case study</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact" id="contact">
+    <div class="section__head">
+      <span class="section__index mono">04</span>
+      <h2 class="section__title reveal-up">Come build with us</h2>
+    </div>
+
+    <div class="contact__grid">
+      <div class="contact__info reveal-up">
+        <a class="contact__email magnetic" data-magnetic href="mailto:hello@techtivity.dev">
+          <span class="mono">hello@techtivity.dev</span>
+        </a>
+        <p class="contact__note">Thursdays, 7pm, room 214. New members always welcome — bring a laptop, or don't.</p>
+        <div class="contact__socials">
+          <a href="#" class="text-link">GitHub</a>
+          <a href="#" class="text-link">X / Twitter</a>
+          <a href="#" class="text-link">Discord</a>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" autocomplete="name" required aria-describedby="nameError">
+          <span class="field__line" aria-hidden="true"></span>
+          <span class="field__error" id="nameError" role="alert"></span>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="emailError">
+          <span class="field__line" aria-hidden="true"></span>
+          <span class="field__error" id="emailError" role="alert"></span>
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" required aria-describedby="messageError" maxlength="400"></textarea>
+          <span class="field__line" aria-hidden="true"></span>
+          <div class="field__foot">
+            <span class="field__error" id="messageError" role="alert"></span>
+            <span class="field__count mono" id="messageCount">0 / 400</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--primary magnetic" data-magnetic>
+          <span class="btn__label">Send message</span>
+          <svg class="btn__check" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <p class="contact-form__status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__marquee mono" aria-hidden="true">
+    <div class="footer__marquee-track">
+      <span>TECHTIVITY</span><span>TECHTIVITY</span><span>TECHTIVITY</span><span>TECHTIVITY</span>
+    </div>
+  </div>
+  <div class="footer__top">
+    <a href="#top" class="footer__logo magnetic" data-magnetic>TECHTIVITY</a>
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="#about">About</a>
+      <a href="#creators">Creators</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer__socials" aria-label="Social links">
+      <a href="#" class="text-link">GitHub</a>
+      <a href="#" class="text-link">X</a>
+      <a href="#" class="text-link">Discord</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span class="mono">© 2026 Techtivity — built by the members, not for them</span>
+    <button class="footer__top-btn magnetic mono" id="backToTop" data-magnetic aria-label="Back to top">BACK TO TOP ↑</button>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
