@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>About — Techtivity</title>
-<meta name="description" content="Techtivity is an technology studio for people building a more considered future." />
+<meta name="description" content="Techtivity is an independent technology studio for people building a more considered future." />
 <meta name="color-scheme" content="dark light" />
-<link rel="icon" href="Techtivity emblemlight.svg" viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23101b2d'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23d8f36b'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23101b2d'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23d8f36b'/%3E%3C/svg%3E" />
 <style>
 :root{--ink:#101b2d;--paper:#eef0eb;--muted:#69737e;--line:rgba(16,27,45,.16);--lime:#d8f36b;--blue:#3b6df6;--soft:#59636e;--focus:#3b6df6}
 [data-theme=dark]{--ink:#eef0eb;--paper:#101b2d;--muted:#b7c0c8;--line:rgba(238,240,235,.18);--soft:#b7c0c8;--focus:#d8f36b}
@@ -48,15 +48,23 @@ button{font:inherit;color:inherit}
 .story p em{font:italic clamp(21px,2.4vw,32px)/1.4 Georgia,serif;color:var(--blue)}
 .story .col-label{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding-top:10px}
 
+/* Hero image slot */
+.hero-frame{margin:70px clamp(22px,9vw,140px) 0;border:1px solid var(--line);aspect-ratio:16/7;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(59,109,246,.08),transparent 60%)}
+.frame-fill{position:absolute;inset:0;background-repeat:no-repeat;background-position:center;background-size:cover;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.frame-label{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:16px 22px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);background:var(--paper)}
+.frame-label span:last-child{color:var(--blue)}
+
 /* Brief description band */
 .brief{padding:0 clamp(22px,9vw,140px) 130px;display:grid;grid-template-columns:minmax(160px,240px) 1fr;gap:60px}
 .brief .col-label{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding-top:10px}
-.brief blockquote{margin:0;border-left:2px solid var(--blue);padding-left:26px;font-size:clamp(16px,1.6vw,19px);line-height:1.75;color:var(--soft);max-width:640px;font-style:normal}
+.brief blockquote{margin:0 0 30px;border-left:2px solid var(--blue);padding-left:26px;font-size:clamp(16px,1.6vw,19px);line-height:1.75;color:var(--soft);max-width:640px;font-style:normal}
+.brief .imgslot{aspect-ratio:16/8;border:1px dashed var(--line);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;padding:10px;background-repeat:no-repeat;background-position:center;background-size:cover;max-width:640px}
 
 /* Values grid (text only, no image slots) */
 .values{padding:0 clamp(22px,9vw,140px) 130px;border-top:1px solid var(--line)}
 .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:60px;border:1px solid var(--line)}
-.value{background:var(--paper);padding:34px 30px 40px;display:flex;flex-direction:column;gap:14px}
+.value{background:var(--paper);padding:34px 30px 40px;display:flex;flex-direction:column;gap:20px}
+.value .imgslot{aspect-ratio:4/3;border:1px dashed var(--line);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;padding:10px;background-repeat:no-repeat;background-position:center;background-size:cover}
 .value .num{font-size:10px;color:var(--muted);letter-spacing:.1em}
 .value strong{font-size:22px;font-weight:400;letter-spacing:-.03em}
 .value span.body{font-size:13px;line-height:1.6;color:var(--soft)}
@@ -121,6 +129,7 @@ button{font:inherit;color:inherit}
   .nav.open a:last-child{border-bottom:0}
   .page-head{padding-top:38px}
   .page-head .desc{margin-left:0;margin-top:30px}
+  .hero-frame{margin:50px 22px 0;aspect-ratio:4/5}
   .story{padding:80px 22px 40px}
   .brief{padding:0 22px 80px}
   .values{padding:0 22px 90px}
@@ -159,34 +168,49 @@ button{font:inherit;color:inherit}
   <p class="desc reveal">Techtivity is a small, deliberately independent studio. We build products, systems and interfaces for teams who'd rather move carefully than move fast.</p>
 </section>
 
+<!-- Primary image slot: replace background-image on .frame-fill, e.g. background-image:url('images/studio.jpg') -->
+<div class="hero-frame reveal">
+  <div class="frame-fill" role="img" aria-label="Photograph of the Techtivity studio space">Image — studio</div>
+  <div class="frame-label"><span>Studio — Paris, 11th arrondissement</span><span>Image 01 / 06</span></div>
+</div>
+
 <section class="story reveal">
   <span class="col-label">Our story</span>
   <div>
-    <p>We started Techtivity in 2021 with one belief: that most software is built faster than it is <em>understood.</em></p>
+    <p>We started Techtivity in 2017 with one belief: that most software is built faster than it is <em>understood.</em></p>
     <p>Since then we've partnered with founders, research labs and product teams to slow down just enough to build things that last — infrastructure, spatial tools, intelligence layers — without losing the urgency that got them started.</p>
     <p>Today we're a team of fourteen, working across Paris, Lisbon and remotely, on a small number of long relationships rather than a large number of short ones. <a href="index.html#work" class="text-link">See selected work ↗</a></p>
   </div>
 </section>
 
+<!-- Brief description space -->
 <section class="brief reveal">
   <span class="col-label">In brief</span>
-  <blockquote>A studio-sized team that behaves like an in-house one: we embed with the people who'll live with what we build, favor fewer relationships held for longer, and treat every technical or visual decision as something that has to earn its place before it ships.</blockquote>
+  <div>
+    <blockquote>A studio-sized team that behaves like an in-house one: we embed with the people who'll live with what we build, favor fewer relationships held for longer, and treat every technical or visual decision as something that has to earn its place before it ships.</blockquote>
+    <!-- Image slot: swap background-image url below -->
+    <div class="imgslot" style="background-image:none">Image — team at work</div>
+  </div>
 </section>
 
 <section class="values">
   <div class="section-head reveal"><p class="eyebrow">How we work</p><span>03 — Principles</span></div>
   <div class="values-grid">
     <div class="value reveal">
+      <!-- Image slot: swap background-image url below -->
+      <div class="imgslot" style="background-image:none">Image — process detail</div>
       <span class="num">01</span>
       <strong>Depth over speed</strong>
       <span class="body">We take on fewer projects so each one gets the attention a real product deserves.</span>
     </div>
     <div class="value reveal">
+      <div class="imgslot" style="background-image:none">Image — collaboration</div>
       <span class="num">02</span>
       <strong>Built alongside you</strong>
       <span class="body">No black boxes. Our clients sit inside the process, not outside it.</span>
     </div>
     <div class="value reveal">
+      <div class="imgslot" style="background-image:none">Image — craft detail</div>
       <span class="num">03</span>
       <strong>Considered by default</strong>
       <span class="body">Every decision, visual or technical, has to earn its place in the final product.</span>
@@ -198,26 +222,27 @@ button{font:inherit;color:inherit}
   <div class="section-head reveal"><p class="eyebrow">The people</p><span>14 — Studio, worldwide</span></div>
   <div class="team-grid">
     <div class="person reveal">
-      <div class="imgslot" style=background-image:"">Portrait</div>
-      <strong>Sayansut Mohapatra</strong>
+      <!-- Image slot: swap background-image url below -->
+      <div class="imgslot" style="background-image:none">Portrait</div>
+      <strong>Mireille Adjani</strong>
       <span class="role">Founder, Design</span>
       <a class="plink" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
     </div>
     <div class="person reveal">
       <div class="imgslot" style="background-image:none">Portrait</div>
-      <strong>Gaurav Mohapatra</strong>
+      <strong>Théo Kessler</strong>
       <span class="role">Founder, Engineering</span>
       <a class="plink" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
     </div>
     <div class="person reveal">
       <div class="imgslot" style="background-image:none">Portrait</div>
-      <strong>Shreyans Das</strong>
+      <strong>Priya Nandakumar</strong>
       <span class="role">Lead, Product</span>
       <a class="plink" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
     </div>
     <div class="person reveal">
       <div class="imgslot" style="background-image:none">Portrait</div>
-      <strong>Aarush Maharana</strong>
+      <strong>Sam Okoro</strong>
       <span class="role">Lead, Research</span>
       <a class="plink" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
     </div>
