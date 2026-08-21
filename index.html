@@ -1,86 +1,153 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Techtivity — Ideas into instruments</title>
-<meta name="description" content="Techtivity is an independent studio created in 2021." />
-<meta name="color-scheme" content="dark light" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23101b2d'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23d8f36b'/%3E%3C/svg%3E" />
-<link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Techtivity — Ideas into instruments</title>
+  <meta name="description" content="Techtivity is an independent studio created in 2021." />
+  <meta name="color-scheme" content="dark light" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23101b2d'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23d8f36b'/%3E%3C/svg%3E" type="image/svg+xml" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="site" id="top">
-<div class="cursor" id="cursor" aria-hidden="true"></div>
-<header class="topbar">
- <a class="wordmark" href="index.html"><img src="Techtivity emblem.svg" alt="Techtivity logo" class="logo-img">techtivity<span class="dot">.</span></a>
-  <nav class="nav" id="nav">
-    <a href="#work">Projects</a>
-    <a href="about.html">About ↗</a>
-    <a href="contact.html">Contact ↗</a>
-  </nav>
-  <div class="actions">
-    <button class="theme-toggle" id="theme" aria-label="Switch to light mode">☼ <span>Light</span></button>
-    <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav">☰</button>
-  </div>
-</header>
+  <div class="site" id="top">
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
 
-<main>
-<section class="hero">
-  <div class="meta reveal"><span>Independent technology studio</span><span>Bhubaneswar / Worldwide</span></div>
-  <div class="hero-copy">
-    <p class="eyebrow reveal">We make what&apos;s next feel <i>inevitable.</i></p>
-    <h1 class="reveal">Ideas into<br><span>instruments.</span></h1>
-    <p class="desc reveal">Techtivity is a studio for people building a more considered future.</p>
-  </div>
-  <a class="scroll" href="#work"><i></i>Scroll to explore ↓</a>
-  <div class="visual" aria-hidden="true">
-    <div class="orbit"></div>
-    <div class="orbit two"></div>
-    <div class="core">t</div>
-    <span class="label a">03° 14′ 08″ N</span>
-    <span class="label b">signal / 001</span>
-  </div>
-</section>
+    <!-- Header -->
+    <header class="topbar">
+      <a class="wordmark" href="index.html">
+        <svg class="logo-img" viewBox="0 0 32 32" width="24" height="24" aria-hidden="true">
+          <circle cx="16" cy="16" r="15" fill="#101b2d" />
+          <circle cx="16" cy="16" r="4" fill="#d8f36b" />
+        </svg>
+        <span>techtivity</span><span class="dot">.</span>
+      </a>
 
-<section class="work" id="work">
-  <div class="section-head reveal"><p class="eyebrow">Selected work</p><span>03 — 2023—26</span></div>
-  <div>
-    <button class="project reveal" type="button" aria-label="View Lumen / OS project">
-      <span class="index">01</span><span class="image lumen"></span>
-      <span class="info"><span class="type">Digital infrastructure</span><strong>Lumen / OS</strong><span class="description">A quiet operating system for the teams shaping what comes next.</span></span>
-      <span class="year">2026</span><span class="arrow">↗</span>
-    </button>
-    <button class="project reveal" type="button" aria-label="View Nera project">
-      <span class="index">02</span><span class="image nera"></span>
-      <span class="info"><span class="type">Spatial computing</span><strong>Nera</strong><span class="description">Making complex environments feel instinctive, tactile, and human.</span></span>
-      <span class="year">2025</span><span class="arrow">↗</span>
-    </button>
-    <button class="project reveal" type="button" aria-label="View Northstar project">
-      <span class="index">03</span><span class="image northstar"></span>
-      <span class="info"><span class="type">Intelligence layer</span><strong>Northstar</strong><span class="description">A new lens for finding signal inside the noise of modern work.</span></span>
-      <span class="year">2025</span><span class="arrow">↗</span>
-    </button>
+      <nav class="nav" id="nav" aria-label="Main Navigation">
+        <a href="#work">Projects</a>
+        <a href="about.html">About ↗</a>
+        <a href="contact.html">Contact ↗</a>
+      </nav>
+
+      <div class="actions">
+        <button class="theme-toggle" id="theme" aria-label="Switch to light mode">
+          <span aria-hidden="true">☼</span> <span>Light</span>
+        </button>
+        <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+          <span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="meta reveal">
+          <span>Independent technology studio</span>
+          <span>Bhubaneswar / Worldwide</span>
+        </div>
+        
+        <div class="hero-copy">
+          <p class="eyebrow reveal">We make what's next feel <i>inevitable.</i></p>
+          <h1 class="reveal">Ideas into<br><span>instruments.</span></h1>
+          <p class="desc reveal">Techtivity is a studio for people building a more considered future.</p>
+        </div>
+
+        <a class="scroll" href="#work"><i aria-hidden="true"></i>Scroll to explore ↓</a>
+
+        <div class="visual" aria-hidden="true">
+          <div class="orbit"></div>
+          <div class="orbit two"></div>
+          <div class="core">t</div>
+          <span class="label a">03° 14′ 08″ N</span>
+          <span class="label b">signal / 001</span>
+        </div>
+      </section>
+
+      <!-- Work Section -->
+      <section class="work" id="work">
+        <div class="section-head reveal">
+          <p class="eyebrow">Selected work</p>
+          <span>03 — 2023—26</span>
+        </div>
+
+        <div class="project-list">
+          <button class="project reveal" type="button" aria-label="View Lumen / OS project">
+            <span class="index">01</span>
+            <span class="image lumen"></span>
+            <span class="info">
+              <span class="type">Digital infrastructure</span>
+              <strong>Lumen / OS</strong>
+              <span class="description">A quiet operating system for the teams shaping what comes next.</span>
+            </span>
+            <span class="year">2026</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </button>
+
+          <button class="project reveal" type="button" aria-label="View Nera project">
+            <span class="index">02</span>
+            <span class="image nera"></span>
+            <span class="info">
+              <span class="type">Spatial computing</span>
+              <strong>Nera</strong>
+              <span class="description">Making complex environments feel instinctive, tactile, and human.</span>
+            </span>
+            <span class="year">2025</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </button>
+
+          <button class="project reveal" type="button" aria-label="View Northstar project">
+            <span class="index">03</span>
+            <span class="image northstar"></span>
+            <span class="info">
+              <span class="type">Intelligence layer</span>
+              <strong>Northstar</strong>
+              <span class="description">A new lens for finding signal inside the noise of modern work.</span>
+            </span>
+            <span class="year">2025</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Manifesto Section -->
+      <section class="manifesto reveal">
+        <p class="eyebrow">Our point of view</p>
+        <h2>The future is not a destination.<br><em>It's a material.</em></h2>
+        <div class="manifesto-foot">
+          <p>We partner with ambitious people and organizations to turn the unknown into something you can hold.</p>
+          <a href="about.html" class="text-link">Read our approach ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div>
+        <a class="wordmark" href="#top">
+          <svg class="mark" viewBox="0 0 32 32" width="20" height="20" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" fill="#101b2d" />
+            <circle cx="16" cy="16" r="4" fill="#d8f36b" />
+          </svg>
+          <span>techtivity</span><span class="dot">.</span>
+        </a>
+        <p class="footer-note">Technology, with intention.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer Navigation">
+        <a href="about.html">About</a>
+        <a href="#work">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer-end">
+        <span>© 2026 Techtivity</span>
+        <span>Built for tomorrow</span>
+      </div>
+    </footer>
   </div>
-</section>
 
-<section class="manifesto reveal">
-  <p class="eyebrow">Our point of view</p>
-  <h2>The future is not a destination.<br><em>It&apos;s a material.</em></h2>
-  <div class="manifesto-foot">
-    <p>We partner with ambitious people and organizations to turn the unknown into something you can hold.</p>
-    <a href="about.html" class="text-link">Read our approach ↗</a>
-  </div>
-</section>
-</main>
-
-<footer class="footer">
-  <div><a class="wordmark" href="#top"><span class="mark"></span>techtivity<span class="dot">.</span></a><p class="footer-note">Technology, with intention.</p></div>
-  <div class="footer-links"><a href="about.html">About</a><a href="#work">Projects</a><a href="contact.html">Contact</a></div>
-  <div class="footer-end"><span>© 2026 Techtivity</span><span>Built for tomorrow</span></div>
-</footer>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
