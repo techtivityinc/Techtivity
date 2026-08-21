@@ -77,26 +77,13 @@ button {
   letter-spacing: -0.06em;
 }
 
+/* Updated logo CSS rules to handle inline SVGs cleanly */
+.logo-img,
 .mark {
-  width: 18px;
-  height: 18px;
-  background: var(--ink);
-  display: inline-block;
-  border-radius: 50% 50% 50% 2px;
-  transform: rotate(-45deg);
-  position: relative;
+  width: 14px !important;
+  height: 14px !important;
   flex: none;
-}
-
-.mark::after {
-  content: '';
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--lime);
-  position: absolute;
-  top: 6px;
-  left: 6px;
+  display: block;
 }
 
 .dot {
@@ -473,10 +460,6 @@ h1 span {
 
 .footer .wordmark {
   color: var(--ink);
-}
-
-.footer .mark {
-  background: var(--ink);
 }
 
 .footer-note {
