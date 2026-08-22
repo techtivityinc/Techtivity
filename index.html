@@ -140,6 +140,11 @@
       .index, .year { font-size: 10px; color: #84909b; align-self: start; padding-top: 5px; }
       .image { height: 150px; position: relative; overflow: hidden; transition: transform .6s ease, filter .5s ease; }
       .project:hover .image { transform: scale(0.98); filter: saturate(1.2) contrast(1.08); }
+      .image img {
+        position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center;
+        opacity: 0; transition: opacity .5s ease;
+      }
+      .image img.loaded { opacity: 1; }
       .lumen { background: linear-gradient(135deg, #273c53 0 45%, #bfd6d2 46% 49%, #536f7f 50%); }
       .nera { background: linear-gradient(150deg, #cbd4bf, #7e8e78 46%, #273a39 47%); }
       .northstar {
@@ -164,30 +169,20 @@
       .project:hover .project-url::after { transform: translate(3px, -3px); color: var(--orange); }
       .project:not([data-has-link]) .project-url { visibility: hidden; }
 
-      /* Link preview card: shows a live screenshot on hover for projects
-         that have a real URL */
+      /* Link chip: shown on hover for projects that have a real URL,
+         since the screenshot itself now lives in the project image */
       .link-preview {
-        position: absolute; z-index: 20; top: 12px; right: 60px; width: 260px;
-        background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 10px;
-        padding: 8px; box-shadow: 0 18px 40px rgba(0,0,0,.28);
+        position: absolute; z-index: 20; top: 12px; right: 60px;
+        background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 999px;
+        padding: 7px 12px 7px 7px; box-shadow: 0 14px 30px rgba(0,0,0,.24);
         opacity: 0; transform: translateY(6px) scale(.97); pointer-events: none;
         transition: opacity .25s ease, transform .25s ease;
-        display: flex; flex-direction: column; gap: 8px;
+        display: flex; align-items: center; gap: 8px;
       }
       .project[data-has-link]:hover .link-preview { opacity: 1; transform: translateY(0) scale(1); }
-      .link-preview .lp-shot-wrap {
-        width: 100%; aspect-ratio: 16 / 10; border-radius: 6px; overflow: hidden;
-        background: var(--line); position: relative;
-      }
-      .link-preview .lp-shot {
-        width: 100%; height: 100%; object-fit: cover; object-position: top center;
-        display: block; opacity: 0; transition: opacity .35s ease;
-      }
-      .link-preview .lp-shot.loaded { opacity: 1; }
-      .link-preview .lp-row { display: flex; align-items: center; gap: 8px; padding: 0 2px 2px; }
-      .link-preview img.lp-favicon { width: 16px; height: 16px; border-radius: 4px; flex: 0 0 16px; background: var(--line); }
-      .link-preview .lp-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-      .link-preview .lp-host { font-size: 12px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .link-preview img.lp-favicon { width: 18px; height: 18px; border-radius: 5px; flex: 0 0 18px; background: var(--line); }
+      .link-preview .lp-text { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+      .link-preview .lp-host { font-size: 11px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
       .link-preview .lp-hint { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
 
       .manifesto { padding: 150px clamp(22px, 14vw, 220px) 165px; }
@@ -312,7 +307,7 @@
           </div>
           <div>
             <a class="project reveal" href="https://webinvictusos.neocities.org" target="_blank" rel="noopener" aria-label="InvictusOS — visit website">
-              <span class="index">01</span><span class="image lumen"></span>
+              <span class="index">01</span><span class="image lumen"><img alt="" /></span>
               <span class="info">
                 <span class="type">Digital infrastructure</span>
                 <strong>InvictusOS</strong>
@@ -321,18 +316,15 @@
               </span>
               <span class="year">2026</span><span class="arrow">↗</span>
               <span class="link-preview" aria-hidden="true">
-                <span class="lp-shot-wrap"><img class="lp-shot" alt="" /></span>
-                <span class="lp-row">
-                  <img class="lp-favicon" alt="" />
-                  <span class="lp-text">
-                    <span class="lp-host"></span>
-                    <span class="lp-hint">Opens in new tab</span>
-                  </span>
+                <img class="lp-favicon" alt="" />
+                <span class="lp-text">
+                  <span class="lp-host"></span>
+                  <span class="lp-hint">Opens in new tab</span>
                 </span>
               </span>
             </a>
             <a class="project reveal" href="" target="_blank" rel="noopener" aria-label="Nera — visit website">
-              <span class="index">02</span><span class="image nera"></span>
+              <span class="index">02</span><span class="image nera"><img alt="" /></span>
               <span class="info">
                 <span class="type">Spatial computing</span>
                 <strong>Nera</strong>
@@ -341,18 +333,15 @@
               </span>
               <span class="year">2025</span><span class="arrow">↗</span>
               <span class="link-preview" aria-hidden="true">
-                <span class="lp-shot-wrap"><img class="lp-shot" alt="" /></span>
-                <span class="lp-row">
-                  <img class="lp-favicon" alt="" />
-                  <span class="lp-text">
-                    <span class="lp-host"></span>
-                    <span class="lp-hint">Opens in new tab</span>
-                  </span>
+                <img class="lp-favicon" alt="" />
+                <span class="lp-text">
+                  <span class="lp-host"></span>
+                  <span class="lp-hint">Opens in new tab</span>
                 </span>
               </span>
             </a>
             <a class="project reveal" href="" target="_blank" rel="noopener" aria-label="Northstar — visit website">
-              <span class="index">03</span><span class="image northstar"></span>
+              <span class="index">03</span><span class="image northstar"><img alt="" /></span>
               <span class="info">
                 <span class="type">Intelligence layer</span>
                 <strong>Northstar</strong>
@@ -361,13 +350,10 @@
               </span>
               <span class="year">2025</span><span class="arrow">↗</span>
               <span class="link-preview" aria-hidden="true">
-                <span class="lp-shot-wrap"><img class="lp-shot" alt="" /></span>
-                <span class="lp-row">
-                  <img class="lp-favicon" alt="" />
-                  <span class="lp-text">
-                    <span class="lp-host"></span>
-                    <span class="lp-hint">Opens in new tab</span>
-                  </span>
+                <img class="lp-favicon" alt="" />
+                <span class="lp-text">
+                  <span class="lp-host"></span>
+                  <span class="lp-hint">Opens in new tab</span>
                 </span>
               </span>
             </a>
@@ -467,28 +453,28 @@
           }
 
           project.dataset.hasLink = "true";
+
+          
+          const shotImg = project.querySelector(".image img");
+          if (shotImg) {
+            shotImg.alt = "Live preview of " + url.hostname;
+            const shotSrc = "https://s0.wp.com/mshots/v1/" + encodeURIComponent(url.href) + "?w=600&h=400";
+            shotImg.addEventListener("load", () => shotImg.classList.add("loaded"), { once: true });
+            shotImg.src = shotSrc;
+            // mshots can serve a placeholder while the real capture renders;
+            // retry once after a short delay so the actual page loads in.
+            setTimeout(() => {
+              shotImg.src = shotSrc + "&t=" + Date.now();
+            }, 2500);
+          }
+
           const preview = project.querySelector(".link-preview");
           if (preview) {
             const favicon = preview.querySelector(".lp-favicon");
-            const shot = preview.querySelector(".lp-shot");
             const host = preview.querySelector(".lp-host");
-
             host.textContent = url.hostname.replace(/^www\./, "");
             favicon.src = "https://www.google.com/s2/favicons?sz=64&domain=" + encodeURIComponent(url.hostname);
             favicon.alt = url.hostname + " favicon";
-
-            shot.alt = "Preview of " + url.hostname;
-            shot.addEventListener("load", () => shot.classList.add("loaded"));
-            shot.src = "https://s0.wp.com/mshots/v1/" + encodeURIComponent(url.href) + "?w=520&h=325";
-
-            let retried = false;
-            shot.addEventListener("load", () => {
-              if (retried) return;
-              retried = true;
-              setTimeout(() => {
-                shot.src = "https://s0.wp.com/mshots/v1/" + encodeURIComponent(url.href) + "?w=520&h=325&t=" + Date.now();
-              }, 2500);
-            }, { once: true });
           }
         });
       })();
