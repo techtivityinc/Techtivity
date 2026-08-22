@@ -52,9 +52,8 @@
         background: var(--paper); backdrop-filter: blur(6px);
       }
       .wordmark { display: flex; align-items: center; gap: 8px; font-size: 17px; font-weight: 700; letter-spacing: -0.06em; }
-      /* Reserved space for the final logo asset — keep this exact box size
-         (32x32px) when the SVG/PNG logo file is dropped in, so nothing in
-         the header reflows. */
+
+      
       .logo-slot {
         width: 32px; height: 32px; flex: 0 0 32px; display: inline-flex; align-items: center; justify-content: center;
         border: 1px dashed var(--line); border-radius: 2px; font-size: 12px; color: var(--blue);
@@ -240,8 +239,8 @@
       <div class="cursor" id="cursor"></div>
       <header class="topbar">
         <a class="wordmark" href="#top" aria-label="Techtivity home"
-          ><span class="logo-slot" aria-hidden="true" title="Reserved 32x32px logo slot">t</span
-          ><span>techtivity<span class="dot">.</span></span></a>
+          ><span class="logo-slot" aria-hidden="true" title="Techtivity emblemlight.svg">t</span
+          ><span>Techtivity<span class="dot">.</span></span></a>
         <nav class="nav" id="nav">
           <a href="#work">Projects</a><a href="about.html">About ↗</a
           ><a href="contact.html">Contact ↗</a>
