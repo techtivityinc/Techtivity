@@ -53,6 +53,7 @@
       .wordmark { display: flex; align-items: center; gap: 8px; font-size: 17px; font-weight: 700; letter-spacing: -0.06em; }
 
       /* Reserved space for the final logo asset — keep this exact box size
+         (32x32px) when the SVG/PNG logo file is dropped in, so nothing in
          the header reflows. */
       .logo-slot {
         width: 32px; height: 32px; flex: 0 0 32px; display: inline-flex; align-items: center; justify-content: center;
@@ -144,6 +145,12 @@
         opacity: 0; transition: opacity .5s ease;
       }
       .image img.loaded { opacity: 1; }
+      .image .shot-status {
+        position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+        font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: rgba(238,240,235,.8);
+        background: rgba(16,27,45,.18); opacity: 1; transition: opacity .4s ease; pointer-events: none;
+      }
+      .image .shot-status.hide { opacity: 0; }
       .lumen { background: linear-gradient(135deg, #273c53 0 45%, #bfd6d2 46% 49%, #536f7f 50%); }
       .nera { background: linear-gradient(150deg, #cbd4bf, #7e8e78 46%, #273a39 47%); }
       .northstar {
@@ -306,7 +313,7 @@
           </div>
           <div>
             <a class="project reveal" href="https://webinvictusos.neocities.org" target="_blank" rel="noopener" aria-label="InvictusOS — visit website">
-              <span class="index">01</span><span class="image lumen"><img alt="" /></span>
+              <span class="index">01</span><span class="image lumen"><img alt="" /><span class="shot-status">Loading preview…</span></span>
               <span class="info">
                 <span class="type">Digital infrastructure</span>
                 <strong>InvictusOS</strong>
@@ -323,7 +330,7 @@
               </span>
             </a>
             <a class="project reveal" href="" target="_blank" rel="noopener" aria-label="Nera — visit website">
-              <span class="index">02</span><span class="image nera"><img alt="" /></span>
+              <span class="index">02</span><span class="image nera"><img alt="" /><span class="shot-status">Loading preview…</span></span>
               <span class="info">
                 <span class="type">Spatial computing</span>
                 <strong>Nera</strong>
@@ -340,7 +347,7 @@
               </span>
             </a>
             <a class="project reveal" href="" target="_blank" rel="noopener" aria-label="Northstar — visit website">
-              <span class="index">03</span><span class="image northstar"><img alt="" /></span>
+              <span class="index">03</span><span class="image northstar"><img alt="" /><span class="shot-status">Loading preview…</span></span>
               <span class="info">
                 <span class="type">Intelligence layer</span>
                 <strong>Northstar</strong>
@@ -434,6 +441,9 @@
         window.addEventListener("scroll", updateProgress, { passive: true });
         updateProgress();
 
+        // Wire up each project card: cards with a real URL get a favicon
+        // preview and open normally; cards left blank are inert (no dead
+        // navigation to the current page).
         document.querySelectorAll(".project").forEach((project) => {
           const raw = (project.getAttribute("href") || "").trim();
           if (!raw) {
@@ -453,18 +463,53 @@
 
           project.dataset.hasLink = "true";
 
-          
+          // Live screenshot thumbnail replacing the static gradient image.
+          // microlink renders the page server-side and only responds once
+          // the actual screenshot is ready (no generic placeholder), so the
+          // <img> just waits and shows the real capture when it loads. If
+          // that service is unreachable we fall back to mshots, which is
+          // faster but shows a placeholder first — polled a few times so
+          // the real capture replaces it once ready.
           const shotImg = project.querySelector(".image img");
+          const status = project.querySelector(".shot-status");
           if (shotImg) {
             shotImg.alt = "Live preview of " + url.hostname;
-            const shotSrc = "https://s0.wp.com/mshots/v1/" + encodeURIComponent(url.href) + "?w=600&h=400";
-            shotImg.addEventListener("load", () => shotImg.classList.add("loaded"), { once: true });
-            shotImg.src = shotSrc;
-            // mshots can serve a placeholder while the real capture renders;
-            // retry once after a short delay so the actual page loads in.
-            setTimeout(() => {
-              shotImg.src = shotSrc + "&t=" + Date.now();
-            }, 2500);
+
+            const showLoaded = () => {
+              shotImg.classList.add("loaded");
+              if (status) status.classList.add("hide");
+            };
+
+            const microlinkSrc =
+              "https://api.microlink.io/?url=" + encodeURIComponent(url.href) +
+              "&screenshot=true&meta=false&embed=screenshot.url";
+
+            const mshotsBase = "https://s0.wp.com/mshots/v1/" + encodeURIComponent(url.href) + "?w=600&h=400";
+            let mshotsAttempts = 0;
+            const maxMshotsAttempts = 5;
+            const pollMshots = () => {
+              mshotsAttempts += 1;
+              const poller = new Image();
+              poller.onload = () => {
+                shotImg.src = poller.src;
+                showLoaded();
+                if (mshotsAttempts < maxMshotsAttempts) {
+                  setTimeout(() => {
+                    const refreshed = new Image();
+                    refreshed.onload = () => { shotImg.src = refreshed.src; };
+                    refreshed.src = mshotsBase + "&t=" + Date.now();
+                  }, 3000);
+                }
+              };
+              poller.onerror = () => {
+                if (status) status.textContent = "Preview unavailable";
+              };
+              poller.src = mshotsBase + "&t=" + Date.now();
+            };
+
+            shotImg.addEventListener("load", showLoaded, { once: true });
+            shotImg.addEventListener("error", pollMshots, { once: true });
+            shotImg.src = microlinkSrc;
           }
 
           const preview = project.querySelector(".link-preview");
