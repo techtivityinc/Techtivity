@@ -532,9 +532,56 @@
           grid-row: 1 / span 2;
         }
         .year,
-        .description {
-          display: none;
-        }
+      .description {
+        display: block;
+        font-size: 13px;
+        color: var(--soft);
+        line-height: 1.45;
+        max-width: 330px;
+        margin-top: 12px;
+      }
+      .project-link {
+        display: flex;
+        gap: 8px;
+        margin-top: 18px;
+        max-width: 330px;
+      }
+      .project-link input {
+        width: 100%;
+        min-width: 0;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        outline: 0;
+        padding: 8px 0;
+        font: 11px Arial, sans-serif;
+        transition: border-color .3s ease;
+      }
+      .project-link input:focus { border-color: var(--orange); }
+      .project-link button {
+        border: 0;
+        background: var(--orange);
+        color: var(--ink);
+        padding: 0 12px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: transform .3s ease;
+      }
+      .project-link button:hover { transform: translateX(4px); }
+      .preview {
+        display: none;
+        grid-column: 2 / 5;
+        margin-top: 20px;
+        aspect-ratio: 16 / 7;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: var(--ink);
+        animation: previewIn .6s ease both;
+      }
+      .preview.active { display: block; }
+      .preview iframe { width: 100%; height: 100%; border: 0; background: var(--paper); }
+      @keyframes previewIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
         .manifesto {
           padding: 100px 22px 115px;
         }
@@ -565,7 +612,7 @@
       <div class="cursor" id="cursor"></div>
       <header class="topbar">
         <a class="wordmark" href="#top" aria-label="Techtivity home"
-          ><span class="logo-slot" aria-label="Reserved SVG logo space"></span
+          ><span class="logo-slot" aria-label="Techtivity emblemlight.svg"></span
           ><span>techtivity<span class="dot">.</span></span></a>
         <nav class="nav" id="nav">
           <a href="#work">Projects</a><a href="about.html">About ↗</a
@@ -577,8 +624,9 @@
             id="theme"
             aria-label="Switch color mode"
           >
-            ☼ <span>Light</span></button
-          ><button class="menu" id="menu" aria-label="Open menu">☰</button>
+            ☼ <span>Light</span>
+          </button>
+          <button class="menu" id="menu" aria-label="Open menu">☰</button>
         </div>
       </header>
       <main>
@@ -593,7 +641,7 @@
             </p>
             <h1 class="reveal">Ideas into<br /><span>instruments.</span></h1>
             <p class="desc reveal">
-              Techtivity is a design and technology studio for people building
+              Techtivity is a design and technology company for people building
               a more considered future.
             </p>
           </div>
@@ -609,9 +657,9 @@
         <section class="work" id="work">
           <div class="section-head reveal">
             <p class="eyebrow">Selected work</p>
-            <span>03 — 2021—26</span>
+            <span>03 — 2023��26</span>
           </div>
-                   <div>
+          <div>
             <article class="project reveal">
               <span class="index">01</span><span class="image lumen"></span
               ><span class="info"
@@ -710,6 +758,20 @@
       document
         .querySelectorAll(".reveal")
         .forEach((el) => observer.observe(el));
+      document.querySelectorAll(".project").forEach((project) => {
+        const input = project.querySelector("input[type=url]");
+        const trigger = project.querySelector(".project-link button");
+        const preview = project.querySelector(".preview");
+        const frame = project.querySelector("iframe");
+        trigger.addEventListener("click", () => {
+          let value = input.value.trim();
+          if (!value) return;
+          if (!/^https?:\\/\\//i.test(value)) value = "https://" + value;
+          try { new URL(value); } catch { input.focus(); return; }
+          frame.src = value;
+          preview.classList.add("active");
+        });
+      });
     </script>
   </body>
 </html>
